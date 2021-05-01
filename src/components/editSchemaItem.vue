@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent="onSubmit(schema.id)">
       <h3>Name</h3>
       <br>
       <input
@@ -36,6 +36,7 @@
 <!--          @add-column="addColumn"-->
 <!--        />-->
     </form>
+
     <columnList
         v-bind:columns="schema.column"
         @remove-column="removeColumn"
@@ -62,8 +63,17 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
-      this.$emit('update-schema', this.schema)
+    onSubmit(id) {
+      console.log(this.schema.Name)
+      fetch('http://0.0.0.0:8000/api/schema/' + id + '/update', {
+        method: 'PUT',
+        body: JSON.stringify(this.schema),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+          .then(result => result.text())
+          .then(text => console.log(text))
       this.$router.push({name: 'schema_list'})
     },
     addColumn(column) {
