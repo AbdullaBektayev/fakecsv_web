@@ -1,36 +1,54 @@
 <template>
   <div>
-    <form>
-      <h3>Name</h3>
-      <input :value="column.Name"/>
+    <table class="table borderless">
+      <thead>
+      <tr>
+        <th>Column name</th>
+        <th>Type</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Order</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+          <td><input v-model="column.Name"/></td>
 
-      <h3>Type</h3>
-      <select v-model="selectedType">
-        <option
-            v-for="typeChoice in typeChoices"
-            v-bind:key="typeChoice"
-        >
-          {{ typeChoice }}
-        </option>
-      </select>
+          <td>
+            <select v-model="column.Type">
+              <option
+                  v-for="typeChoice in typeChoices"
+                  v-bind:key="typeChoice"
+              >
+                {{ typeChoice }}
+              </option>
+            </select>
+          </td>
 
-      <h3>From</h3>
-      <div>
-      <input :value="column.From"/>
-      </div>
+          <td>
+            <input v-model="column.From"/>
+          </td>
 
-      <h3>To</h3>
-      <input :value="column.To"/>
+          <td>
+            <input v-model="column.To"/>
+          </td>
 
-      <h3>Order</h3>
-      <input :value="column.Order"/>
+          <td>
+            <input v-model="column.Order"/>
+          </td>
 
-    </form>
-    <div>
-      <button class="rm"
-              v-on:click="$emit('remove-column', column.id)"
-      >Remove column</button>
-    </div>
+          <td>
+            <div>
+              <button class="rm"
+                      v-on:click="$emit('remove-column', column.id)"
+              >Remove column</button>
+            </div>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -45,8 +63,7 @@ export default {
   },
   data() {
     return {
-      typeChoices: ['Job','Email', 'Number'],
-      selectedType: 'Job'
+      typeChoices: ['Job','Email', 'Number']
     }
   }
 }
