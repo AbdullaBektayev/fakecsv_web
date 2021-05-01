@@ -73,15 +73,22 @@ export default {
   methods: {
     addColumn() {
       this.column.Schema = this.schema.id
-      fetch('http://0.0.0.0:8000/api/create_column/', {
+      fetch('http://0.0.0.0:8000/api/create/column/', {
         headers: {
           'content-type': 'application/json'
         },
         method: 'POST',
         body: JSON.stringify(this.column),
       })
-          .then(result => result.text())
-          .then(text => console.log(text))
+          .then(result => result.json())
+          .then(
+              json => this.schema.column.push(json),
+          )
+      this.column.Name = ''
+      this.column.Type = 'Job'
+      this.column.From = 0
+      this.column.To = 0
+      this.column.Order = 0
     }
   }
 }
