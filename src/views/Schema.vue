@@ -19,6 +19,7 @@
 
 <script>
 import SchemaList from "@/components/SchemaList";
+
 export default {
   name: "Schema",
   data() {
@@ -27,11 +28,18 @@ export default {
     }
   },
   mounted() {
-    fetch('http://0.0.0.0:8000/api/schema/', {method: 'GET'})
+    fetch('http://0.0.0.0:8000/api/schema/', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${this.$store.state.accessToken}`
+      }
+    })
       .then(response => response.json())
       .then(json => {
         this.schemas = json
       })
+      .catch(err => console.log(err))
   },
   methods: {
     removeSchema(id) {

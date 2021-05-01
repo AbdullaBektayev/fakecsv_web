@@ -13,7 +13,10 @@ const routes = [
   {
     path: '/schema_list',
     name: 'schema_list',
-    component: () => import('../views/Schema.vue')
+    component: () => import('../views/Schema.vue'),
+    meta: {
+      requiresLogin: true
+    }
   },
   {
     name: 'edit_schema',
