@@ -12,7 +12,7 @@
         <h3>Separator</h3>
         <br>
 
-        <select v-model="selectedSeparator">
+        <select v-model="schema.ColumnSeparator">
           <option
               v-for="separator in separatorChoices"
               v-bind:key="separator"
@@ -24,7 +24,7 @@
         <h3>stringChar</h3>
         <br>
 
-        <select v-model="selectedChar">
+        <select v-model="schema.StringChar">
           <option
             v-for="stringChar in stringCharChoices"
             v-bind:key="stringChar"
@@ -60,21 +60,12 @@ export default {
   data() {
     return {
       separatorChoices: ['Comma', 'Space'],
-      stringCharChoices: ['Apostrophe', 'Quotation Marks'],
-      selectedSeparator: 'Comma',
-      selectedChar: 'Apostrophe',
-      columns: [ { "Name": "afdafas", "Type": "FullName", "From": 0, "To": 0, "Order": 0 }, { "Name": "gsdfg", "Type": "Text", "From": 1, "To": 1, "Order": 2 }, { "Name": "dfgsg", "Type": "Job", "From": 2, "To": 1, "Order": 1 } ]
+      stringCharChoices: ['Apostrophe', 'Quotation Marks']
     }
   },
   methods: {
     onSubmit() {
-      const newSchema = {
-        id: this.schema.id,
-        Name: this.schema.Name,
-        ColumnSeparator: this.selectedSeparator,
-        StringChar: this.selectedChar,
-      }
-      this.$emit('update-schema', newSchema)
+      this.$emit('update-schema', this.schema)
       this.$router.push({name: 'schema_list'})
     },
     addColumn(column) {
