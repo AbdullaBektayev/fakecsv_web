@@ -1,5 +1,5 @@
 <template>
-  <tr>
+  <tr v-if="!this.isDeleted">
     <td>{{ schema.id }}</td>
     <td>{{ schema.Name }}</td>
     <td>Some day</td>
@@ -8,7 +8,7 @@
         <router-link :to="{name: 'edit_schema', params: {id: schema.id}}">Edit schema</router-link>
       </button>
       <button class="rm"
-              v-on:click="$emit('remove-schema', schema.id)"
+              v-on:click="removeSchema(schema.id)"
       >Remove schema</button>
     </div>
   </tr>
@@ -21,6 +21,17 @@ export default {
     schema: {
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      isDeleted: false
+    }
+  },
+  methods: {
+    removeSchema(id) {
+      this.$emit('remove-schema', id)
+      this.isDeleted = true
     }
   }
 }

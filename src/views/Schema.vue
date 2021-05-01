@@ -4,8 +4,8 @@
       <thead>
       <tr>
         <th>#</th>
-        <th>Modified</th>
         <th>Title</th>
+        <th>Modified</th>
         <th>Action</th>
       </tr>
       </thead>
@@ -23,7 +23,7 @@ export default {
   name: "Schema",
   data() {
     return {
-      schemas: []
+      schemas: [],
     }
   },
   mounted() {
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     removeSchema(id) {
-      fetch('http://0.0.0.0:8000/api/delete_schema/' + id, {
+      fetch('http://0.0.0.0:8000/api/schema/' + id + '/delete', {
         method: 'DELETE',
       })
         .then(result => result.text())
