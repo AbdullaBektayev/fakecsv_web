@@ -6,7 +6,7 @@
         <br>
         <input
             type="text"
-            v-model="schema.name"
+            v-model="schema.Name"
             placeholder="Name"
         >
         <h3>Separator</h3>
@@ -41,24 +41,30 @@
 <script>
 export default {
   name: "editSchemaItem",
-  props: ['schema'],
+  props: {
+    schema: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
       separatorChoices: ['Comma', 'Space'],
-      stringCharChoices: ['"',"'"],
+      stringCharChoices: ['Apostrophe', 'Quotation Marks'],
       selectedSeparator: 'Comma',
-      selectedChar: '"'
+      selectedChar: 'Apostrophe'
     }
   },
   methods: {
     onSubmit() {
       const newSchema = {
+        id: this.schema.id,
         Name: this.schema.Name,
         ColumnSeparator: this.selectedSeparator,
         StringChar: this.selectedChar
       }
       this.$emit('update-schema', newSchema)
-      this.$router.push('schema_list')
+      this.$router.push({name: 'schema_list'})
     }
   }
 }

@@ -13,11 +13,11 @@ export default {
   name: "editSchema",
   data() {
     return {
-      schema: [],
+      schema: {},
     }
   },
-  mounted(id) {
-    fetch('http://0.0.0.0:8000/api/schema/' + id, {
+  mounted() {
+    fetch('http://0.0.0.0:8000/api/schema/' + this.$route.params.id, {
       method: 'GET',
     })
         .then(response => response.json())
@@ -30,12 +30,11 @@ export default {
   },
   methods: {
     updateSchema(schema) {
-      fetch('http://0.0.0.0:8000/api/update_schema/' + schema.id, {
+      fetch('http://0.0.0.0:8000/api/update_schema/' + this.$route.params.id, {
         method: 'PUT',
         data: schema
       })
         .then(result => result.text())
-        .then(text => console.log(text))
     }
   }
 }

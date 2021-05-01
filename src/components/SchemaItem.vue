@@ -5,7 +5,7 @@
     <td>Some day</td>
     <div class="d-flex justify-content-between">
       <button class="rm">
-        <router-link to="/edit_schema">Edit schema</router-link>
+        <router-link :to="{name: 'edit_schema', params: {id: schema.id}}">Edit schema</router-link>
       </button>
       <button class="rm"
               v-on:click="$emit('remove-schema', schema.id)"

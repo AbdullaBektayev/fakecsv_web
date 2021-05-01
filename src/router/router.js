@@ -17,8 +17,9 @@ const routes = [
   },
   {
     name: 'edit_schema',
-    path: '/edit_schema',
-    component: () => import('../views/editSchema')
+    path: '/schema/:id/edit',
+    component: () => import('../views/editSchema'),
+    params: true
   }
 ]
 
