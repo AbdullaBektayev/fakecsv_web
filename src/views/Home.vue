@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-
+    <form>
+      {% crsf_token %}
+    </form>
   </div>
 </template>
 

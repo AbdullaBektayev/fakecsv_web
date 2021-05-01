@@ -20,6 +20,11 @@ const routes = [
     path: '/schema/:id/edit',
     component: () => import('../views/editSchema'),
     params: true
+  },
+  {
+    name: 'login',
+    path: '/login',
+    component: () => import('../views/Login')
   }
 ]
 
