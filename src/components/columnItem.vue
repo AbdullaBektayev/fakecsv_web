@@ -2,7 +2,7 @@
   <div>
     <form>
       <h3>Name</h3>
-      <input text="{{ column.Name }}"/>
+      <input :value="column.Name"/>
 
       <h3>Type</h3>
       <select v-model="selectedType">
@@ -15,13 +15,15 @@
       </select>
 
       <h3>From</h3>
-      <input text="{{ column.From }}"/>
+      <div>
+      <input :value="column.From"/>
+      </div>
 
       <h3>To</h3>
-      <input text="{{ column.To }}"/>
+      <input :value="column.To"/>
 
       <h3>Order</h3>
-      <input text="{{ column.Order }}"/>
+      <input :value="column.Order"/>
 
     </form>
     <div>

@@ -33,21 +33,24 @@
           </option>
         </select>
         <button type="submit">Submit</button>
-
         <columnList
-            v-bind:columns="columns"
+            v-bind:columns="schema.column"
         />
-        <addColumn
-          @add-column="addColumn"
-        />
+<!--        <addColumn-->
+<!--          @add-column="addColumn"-->
+<!--        />-->
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import columnList from "@/components/columnList";
 export default {
   name: "editSchemaItem",
+  components: {
+    columnList
+  },
   props: {
     schema: {
       type: Object,
@@ -60,7 +63,7 @@ export default {
       stringCharChoices: ['Apostrophe', 'Quotation Marks'],
       selectedSeparator: 'Comma',
       selectedChar: 'Apostrophe',
-      columns: []
+      columns: [ { "Name": "afdafas", "Type": "FullName", "From": 0, "To": 0, "Order": 0 }, { "Name": "gsdfg", "Type": "Text", "From": 1, "To": 1, "Order": 2 }, { "Name": "dfgsg", "Type": "Job", "From": 2, "To": 1, "Order": 1 } ]
     }
   },
   methods: {
@@ -70,7 +73,6 @@ export default {
         Name: this.schema.Name,
         ColumnSeparator: this.selectedSeparator,
         StringChar: this.selectedChar,
-        column: this.columns
       }
       this.$emit('update-schema', newSchema)
       this.$router.push({name: 'schema_list'})
