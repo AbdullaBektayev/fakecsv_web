@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!this.isDeleted">
     <table class="table borderless">
       <thead>
       <tr>
@@ -41,7 +41,7 @@
           <td>
             <div>
               <button class="rm"
-                      v-on:click="$emit('remove-column', column.id)"
+                      v-on:click="removeColumn(column.id)"
               >Remove column</button>
             </div>
           </td>
@@ -63,7 +63,14 @@ export default {
   },
   data() {
     return {
-      typeChoices: ['Job','Email', 'Number']
+      typeChoices: ['Job','Email', 'Number'],
+      isDeleted: false,
+    }
+  },
+  methods: {
+    removeColumn(id) {
+      this.$emit('remove-column', id)
+      this.isDeleted = true
     }
   }
 }

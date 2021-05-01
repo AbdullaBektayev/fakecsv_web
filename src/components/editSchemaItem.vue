@@ -1,47 +1,45 @@
 <template>
   <div>
-    <div>
-      <form @submit.prevent="onSubmit">
-        <h3>Name</h3>
-        <br>
-        <input
-            type="text"
-            v-model="schema.Name"
-            placeholder="Name"
+    <form @submit.prevent="onSubmit">
+      <h3>Name</h3>
+      <br>
+      <input
+          type="text"
+          v-model="schema.Name"
+          placeholder="Name"
+      >
+      <h3>Separator</h3>
+      <br>
+
+      <select v-model="schema.ColumnSeparator">
+        <option
+            v-for="separator in separatorChoices"
+            v-bind:key="separator"
         >
-        <h3>Separator</h3>
-        <br>
+          {{ separator }}
+        </option>
+      </select>
 
-        <select v-model="schema.ColumnSeparator">
-          <option
-              v-for="separator in separatorChoices"
-              v-bind:key="separator"
-          >
-            {{ separator }}
-          </option>
-        </select>
+      <h3>stringChar</h3>
+      <br>
 
-        <h3>stringChar</h3>
-        <br>
-
-        <select v-model="schema.StringChar">
-          <option
-            v-for="stringChar in stringCharChoices"
-            v-bind:key="stringChar"
-          >
-            {{ stringChar }}
-          </option>
-        </select>
-        <button type="submit">Submit</button>
+      <select v-model="schema.StringChar">
+        <option
+          v-for="stringChar in stringCharChoices"
+          v-bind:key="stringChar"
+        >
+          {{ stringChar }}
+        </option>
+      </select>
+      <button type="submit">Submit</button>
 <!--        <addColumn-->
 <!--          @add-column="addColumn"-->
 <!--        />-->
-      </form>
-      <columnList
-          v-bind:columns="schema.column"
-          @remove-column="removeColumn"
-      />
-    </div>
+    </form>
+    <columnList
+        v-bind:columns="schema.column"
+        @remove-column="removeColumn"
+    />
   </div>
 </template>
 
@@ -55,7 +53,6 @@ export default {
   props: {
     schema: {
       type: Object,
-      required: true
     }
   },
   data() {
