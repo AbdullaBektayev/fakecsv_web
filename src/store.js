@@ -4,13 +4,9 @@ import { getAPI} from "@/axios-app";
 
 Vue.use(Vuex)
 export default new Vuex.Store({
-    data() {
-        return {
-            state: {
-                accessToken: localStorage.getItem('accessToken'),
-                refreshToken: localStorage.getItem('refreshToken'),
-            }
-        }
+    state: {
+        accessToken: localStorage.getItem('accessToken'),
+        refreshToken: localStorage.getItem('refreshToken'),
     },
     mutations: {
         updateStorage (state, { access, refresh }) {
@@ -34,7 +30,6 @@ export default new Vuex.Store({
             }
         },
         userLogin (context, usercredentials) {
-            console.log(localStorage.getItem('accessToken'))
             return new Promise((resolve, reject) => {
                 getAPI.post('/api-token/', {
                     username: usercredentials.username,
