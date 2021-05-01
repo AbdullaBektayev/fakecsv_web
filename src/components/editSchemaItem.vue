@@ -33,13 +33,14 @@
           </option>
         </select>
         <button type="submit">Submit</button>
-        <columnList
-            v-bind:columns="schema.column"
-        />
 <!--        <addColumn-->
 <!--          @add-column="addColumn"-->
 <!--        />-->
       </form>
+      <columnList
+          v-bind:columns="schema.column"
+          @remove-column="removeColumn"
+      />
     </div>
   </div>
 </template>
@@ -72,7 +73,7 @@ export default {
       this.columns.push(column)
     },
     removeColumn(id) {
-      fetch('http://0.0.0.0:8000/api/delete_column/' + id, {
+      fetch('http://0.0.0.0:8000/api/column/' + id + '/delete', {
         method: 'DELETE',
       })
           .then(result => result.text())
