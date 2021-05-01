@@ -32,24 +32,27 @@
         </option>
       </select>
       <button type="submit">Submit</button>
-<!--        <addColumn-->
-<!--          @add-column="addColumn"-->
-<!--        />-->
     </form>
 
     <columnList
         v-bind:columns="schema.column"
         @remove-column="removeColumn"
     />
+
+    <addColumn
+        v-bind:schema="schema"
+    />
   </div>
 </template>
 
 <script>
 import columnList from "@/components/columnList";
+import addColumn from "@/components/addColumn";
 export default {
   name: "editSchemaItem",
   components: {
-    columnList
+    columnList,
+    addColumn
   },
   props: {
     schema: {
@@ -64,7 +67,6 @@ export default {
   },
   methods: {
     onSubmit(id) {
-      console.log(this.schema.Name)
       fetch('http://0.0.0.0:8000/api/schema/' + id + '/update', {
         method: 'PUT',
         body: JSON.stringify(this.schema),
@@ -73,11 +75,7 @@ export default {
         }
       })
           .then(result => result.text())
-          .then(text => console.log(text))
       this.$router.push({name: 'schema_list'})
-    },
-    addColumn(column) {
-      this.columns.push(column)
     },
     removeColumn(id) {
       fetch('http://0.0.0.0:8000/api/column/' + id + '/delete', {
