@@ -30,7 +30,6 @@ export default {
     fetch('http://0.0.0.0:8000/api/schema/', {method: 'GET'})
       .then(response => response.json())
       .then(json => {
-        console.log(json)
         this.schemas = json
       })
   },
