@@ -33,6 +33,13 @@
           </option>
         </select>
         <button type="submit">Submit</button>
+
+        <columnList
+            v-bind:columns="columns"
+        />
+        <addColumn
+          @add-column="addColumn"
+        />
       </form>
     </div>
   </div>
@@ -52,7 +59,8 @@ export default {
       separatorChoices: ['Comma', 'Space'],
       stringCharChoices: ['Apostrophe', 'Quotation Marks'],
       selectedSeparator: 'Comma',
-      selectedChar: 'Apostrophe'
+      selectedChar: 'Apostrophe',
+      columns: []
     }
   },
   methods: {
@@ -61,10 +69,20 @@ export default {
         id: this.schema.id,
         Name: this.schema.Name,
         ColumnSeparator: this.selectedSeparator,
-        StringChar: this.selectedChar
+        StringChar: this.selectedChar,
+        column: this.columns
       }
       this.$emit('update-schema', newSchema)
       this.$router.push({name: 'schema_list'})
+    },
+    addColumn(column) {
+      this.columns.push(column)
+    },
+    removeColumn(id) {
+      fetch('http://0.0.0.0:8000/api/delete_column/' + id, {
+        method: 'DELETE',
+      })
+          .then(result => result.text())
     }
   }
 }
