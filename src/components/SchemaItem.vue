@@ -1,7 +1,11 @@
 <template>
   <tr v-if="!this.isDeleted">
     <td>{{ schema.id }}</td>
-    <td>{{ schema.Name }}</td>
+    <td>
+      <router-link :to="{name: 'download_schema_list', params: {id: schema.id}}">
+        {{ schema.Name }}
+      </router-link>
+    </td>
     <td>Some day</td>
     <div class="d-flex justify-content-between">
       <button class="rm">

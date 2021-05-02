@@ -22,7 +22,19 @@ const routes = [
     name: 'edit_schema',
     path: '/schema/:id/edit',
     component: () => import('../views/editSchema'),
-    params: true
+    params: true,
+    meta: {
+      requiresLogin: true
+    }
+  },
+  {
+    name: 'download_schema_list',
+    path: '/schema/:id/download_list',
+    component: () => import('../views/SchemaDownload'),
+    params: true,
+    meta: {
+      requiresLogin: true
+    }
   },
   {
     name: 'login',
@@ -32,7 +44,10 @@ const routes = [
   {
     name: 'logout',
     path: '/logout',
-    component: () => import('../views/Logout')
+    component: () => import('../views/Logout'),
+    meta: {
+      requiresLogin: true
+    }
   }
 ]
 
