@@ -1,8 +1,8 @@
 <template>
   <div class="container ml-0" style="width:70%">
-    <div class="container my-4">
-      <div class="float-left"><h3>Data schemas</h3></div>
-      <div class="float-right">
+    <div class="container">
+      <div class="float-left my-3"><h3>Data schemas</h3></div>
+      <div class="float-right my-3">
         <button v-on:click="createNewSchema" class="btn btn-success">New schema</button>
       </div>
     </div>
