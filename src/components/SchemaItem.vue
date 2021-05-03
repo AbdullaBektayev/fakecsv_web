@@ -7,14 +7,16 @@
       </router-link>
     </td>
     <td>{{ schema.DateModified.slice(0,10)}}</td>
-    <div class="d-flex justify-content-between">
-      <button class="rm">
-        <router-link :to="{name: 'edit_schema', params: {id: schema.id}}">Edit schema</router-link>
-      </button>
-      <button class="rm"
-              v-on:click="removeSchema(schema.id)"
-      >Remove schema</button>
-    </div>
+    <td>
+      <div class="container">
+        <button class="btn btn-outline-primary float-left p-md-1">
+          <router-link :to="{name: 'edit_schema', params: {id: schema.id}}">Edit schema</router-link>
+        </button>
+        <button class="btn btn-outline-danger float-right p-md-1"
+                v-on:click="removeSchema(schema.id)"
+        >Remove schema</button>
+      </div>
+    </td>
   </tr>
 </template>
 

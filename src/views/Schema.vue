@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <div>
-      <button v-on:click="createNewSchema">New schema</button>
+  <div class="container ml-0" style="width:70%">
+    <div class="container my-4">
+      <div class="float-left"><h3>Data schemas</h3></div>
+      <div class="float-right">
+        <button v-on:click="createNewSchema" class="btn btn-success">New schema</button>
+      </div>
     </div>
     <div class="container">
       <table class="table table-bordered">
@@ -10,7 +13,7 @@
           <th>#</th>
           <th>Title</th>
           <th>Modified</th>
-          <th>Action</th>
+          <th style="width:35%">Action</th>
         </tr>
         </thead>
         <SchemaList
