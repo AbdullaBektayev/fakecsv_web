@@ -1,14 +1,25 @@
 <template>
-  <div class="login-form">
-    <div class="lg">
-      <h2 v-if="!incorrectAuth">Wrong credentials entered!. Please enter your correct details.</h2>
-      <form v-on:submit.prevent="login">
-        <label for="user">Username</label>
-        <input type="text" name="user.username" id="user" v-model="username">
-        <label for="pass">Password</label>
-        <input type="password" name="user.password" id="pass" v-model="password">
-        <button type="submit">Login</button>
-      </form>
+  <div class="container">
+    <div class="mx-auto">
+      <div class="w-25 mx-auto my-auto mx-auto">
+        <div class=" mx-automy-4">
+          <h4 v-if="incorrectAuth">Please enter your correct details.</h4>
+        </div>
+        <form v-on:submit.prevent="login" class="mx-auto my-4">
+          <div class="mx-auto my-3">
+            <h4>Login</h4>
+          </div>
+          <div class="mx-auto">
+            <input type="text" name="user.username" id="user" v-model="username">
+          </div>
+          <div class="mx-auto">
+            <input type="password" name="user.password" id="pass" v-model="password">
+          </div>
+          <div class="float-right mx-4 my-3">
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
