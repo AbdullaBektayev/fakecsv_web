@@ -1,19 +1,24 @@
 <template>
-  <div class="container">
-    <table class="table table-bordered">
-      <thead>
-      <tr>
-        <th>#</th>
-        <th>Title</th>
-        <th>Modified</th>
-        <th>Action</th>
-      </tr>
-      </thead>
-      <SchemaList
-        v-bind:schemas="schemas"
-        @remove-schema="removeSchema"
-      />
-    </table>
+  <div>
+    <div>
+      <button v-on:click="createNewSchema">New schema</button>
+    </div>
+    <div class="container">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Modified</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <SchemaList
+          v-bind:schemas="schemas"
+          @remove-schema="removeSchema"
+        />
+      </table>
+    </div>
   </div>
 </template>
 
@@ -47,6 +52,18 @@ export default {
         method: 'DELETE',
       })
         .then(result => result.text())
+    },
+    createNewSchema() {
+      fetch('http://0.0.0.0:8000/api/create_schema/', {
+        headers: {
+          'Authorization': `Bearer ${this.$store.state.accessToken}`
+        },
+        method: 'POST',
+      })
+      .then(response => response.json())
+      .then(json => {
+        this.$router.push({name: 'edit_schema', params: {'id': json.id}})
+      })
     }
   },
   components: {

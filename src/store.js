@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getAPI} from "@/axios-app";
+import { getAPI } from "@/axios-app";
 
 Vue.use(Vuex)
 export default new Vuex.Store({
@@ -12,10 +12,14 @@ export default new Vuex.Store({
         updateStorage (state, { access, refresh }) {
             state.accessToken = access
             state.refreshToken = refresh
+            localStorage.setItem('accessToken', access)
+            localStorage.setItem('refreshToken', refresh)
         },
         destroyToken (state) {
             state.accessToken = null
             state.refreshToken = null
+            localStorage.setItem('accessToken', '')
+            localStorage.setItem('refreshToken', '')
         }
     },
     getters: {
@@ -37,8 +41,6 @@ export default new Vuex.Store({
                 })
                     .then(response => {
                         context.commit('updateStorage', { access: response.data.access, refresh: response.data.refresh })
-                        localStorage.setItem('accessToken', response.data.access)
-                        localStorage.setItem('refreshToken', response.data.refresh)
                         resolve()
                     })
                     .catch(err => {
