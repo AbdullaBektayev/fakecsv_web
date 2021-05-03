@@ -1,47 +1,53 @@
 <template>
-  <div>
-    <table class="table borderless">
-      <thead>
-      <tr>
-        <th>Column name</th>
-        <th>Type</th>
-        <th>From</th>
-        <th>To</th>
-        <th>Order</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td><input v-model="column.Name"/></td>
+  <div class="container border my-3 clearfix">
+    <div class="form-row my-3">
+      <div class="form-group col">
+        <label for="'new_name'" >Column name</label>
+        <input v-model="column.Name" id="'new_name'" type="text" class="form-control"/>
+      </div>
 
-        <td>
-          <select v-model="column.Type">
-            <option
-                v-for="typeChoice in typeChoices"
-                v-bind:key="typeChoice"
-            >
-              {{ typeChoice }}
-            </option>
-          </select>
-        </td>
+      <div class="form-group col">
+        <label for="new_type" >Type</label>
+        <select id="new_type" v-model="column.Type" class="form-control">
+          <option
+              v-for="typeChoice in typeChoices"
+              v-bind:key="typeChoice"
+          >
+            {{ typeChoice }}
+          </option>
+        </select>
+      </div>
 
-        <td>
-          <input v-model="column.From"/>
-        </td>
+      <div class="form-group col">
+        <label for="new_from" v-if="rangeChoices.includes(column.Type)">From</label>
+        <input v-model="column.From" id="new_from" type="text" class="form-control"
+               v-if="rangeChoices.includes(column.Type)"
+        />
+      </div>
 
-        <td>
-          <input v-model="column.To"/>
-        </td>
+      <div class="form-group col">
+        <label for="new_to" v-if="rangeChoices.includes(column.Type)">To</label>
+        <input v-model="column.To" id="new_to" type="text" class="form-control"
+               v-if="rangeChoices.includes(column.Type)"
+        />
+      </div>
 
-        <td>
-          <input v-model="column.Order"/>
-        </td>
+      <div class="form-group col">
+        <label for="new_order" >Order</label>
+        <input v-model="column.Order" id="new_order" type="text" class="form-control"/>
+      </div>
 
-      </tr>
-      </tbody>
-    </table>
+      <div class="form-group col">
+        <label for="new_delete" >Delete</label>
+        <button
+            id="new_delete"
+            class="form-control btn btn-outline-danger"
+        >Remove column</button>
+      </div>
+    </div>
     <button
         v-on:click="addColumn()"
+        class="btn btn-primary float-left mb-3"
     >
       Add column
     </button>
@@ -67,7 +73,8 @@ export default {
         Order: 0,
         Schema:0
       },
-      typeChoices: ['Job','Email', 'Number']
+      rangeChoices: ['Integer', 'Text'],
+      typeChoices: ['Job','Email', 'Integer', 'Text', 'FullName'],
     }
   },
   methods: {
@@ -81,10 +88,15 @@ export default {
         method: 'POST',
         body: JSON.stringify(this.column),
       })
-          .then(result => result.json())
-          .then(
-              json => this.schema.column.push(json),
-          )
+          .then(function(response) {
+            console.log(response.status);
+            if (!response.ok) {
+              throw new Error("HTTP status " + response.status);
+            }
+            else {
+              this.schema.column.push(response.json())
+            }
+          })
       this.column.Name = ''
       this.column.Type = 'Job'
       this.column.From = 0

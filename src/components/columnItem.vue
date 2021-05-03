@@ -2,13 +2,13 @@
   <div v-if="!this.isDeleted" class="container">
     <div class="form-row container">
       <div class="form-group col">
-        <label for="ex1" >Column name</label>
-        <input v-model="column.Name" id="ex1" type="text" class="form-control"/>
+        <label :for="'name_' + column.id" >Column name</label>
+        <input v-model="column.Name" :id="'name_' + column.id" type="text" class="form-control"/>
       </div>
 
       <div class="form-group col">
-        <label for="ex2" >Type</label>
-        <select id="ex2" v-model="column.Type" class="form-control">
+        <label :for="'Type_' + column.id" >Type</label>
+        <select :id="'Type_' + column.id" v-model="column.Type" class="form-control">
           <option
               v-for="typeChoice in typeChoices"
               v-bind:key="typeChoice"
@@ -19,29 +19,29 @@
       </div>
 
       <div class="form-group col">
-        <label for="ex3" v-if="rangeChoices.includes(column.Type)">From</label>
-        <input v-model="column.From" id="ex3" type="text" class="form-control"
+        <label :for="'Form_' + column.id" v-if="rangeChoices.includes(column.Type)">From</label>
+        <input v-model="column.From" :id="'Form_' + column.id" type="text" class="form-control"
                v-if="rangeChoices.includes(column.Type)"
         />
       </div>
 
       <div class="form-group col">
-        <label for="ex4" v-if="rangeChoices.includes(column.Type)">To</label>
-        <input v-model="column.To" id="ex4" type="text" class="form-control"
+        <label :for="'To_' + column.id" v-if="rangeChoices.includes(column.Type)">To</label>
+        <input v-model="column.To" :id="'To_' + column.id" type="text" class="form-control"
                v-if="rangeChoices.includes(column.Type)"
         />
       </div>
 
       <div class="form-group col">
-        <label for="ex5" >Order</label>
-        <input v-model="column.Order" id="ex5" type="text" class="form-control"/>
+        <label :for="'Order_' + column.id" >Order</label>
+        <input v-model="column.Order" :id="'Order_' + column.id" type="text" class="form-control"/>
       </div>
 
       <div class="form-group col">
-        <label for="ex6" >Delete</label>
+        <label :for="'Delete_' + column.id" >Delete</label>
         <button
                 v-on:click="removeColumn(column.id)"
-                id="ex6"
+                :id="'Delete_' + column.id"
                 class="form-control btn btn-outline-danger"
         >Remove column</button>
       </div>
