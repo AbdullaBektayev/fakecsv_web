@@ -1,5 +1,6 @@
 <template>
   <div class="container border my-3 clearfix">
+    <h5 v-if="isError">Fields in From, To or Order isn't correct</h5>
     <div class="form-row my-3">
       <div class="form-group col">
         <label for="'new_name'" >Column name</label>
@@ -75,6 +76,7 @@ export default {
       },
       rangeChoices: ['Integer', 'Text'],
       typeChoices: ['Job','Email', 'Integer', 'Text', 'FullName'],
+      isError: false
     }
   },
   methods: {
@@ -88,15 +90,17 @@ export default {
         method: 'POST',
         body: JSON.stringify(this.column),
       })
-          .then(function(response) {
-            console.log(response.status);
-            if (!response.ok) {
-              throw new Error("HTTP status " + response.status);
-            }
-            else {
-              this.schema.column.push(response.json())
-            }
-          })
+        .then( function( response ){
+          if( response.status != 201 ){
+            this.isError = true
+            console.log( response.status );
+          }else{
+            response.json().then( function( json ){
+              this.isError = false
+              this.schema.column.push(json)
+            }.bind(this));
+          }
+        }.bind(this))
       this.column.Name = ''
       this.column.Type = 'Job'
       this.column.From = 0
