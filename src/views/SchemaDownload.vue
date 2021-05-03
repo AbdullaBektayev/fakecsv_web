@@ -40,7 +40,10 @@ export default {
   },
   mounted() {
     fetch('http://0.0.0.0:8000/api/schema/download/list/' + this.$route.params.id, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${this.$store.state.accessToken}`
+      }
     })
       .then(response => response.json())
       .then(json => {
@@ -52,7 +55,8 @@ export default {
     Generate(number_of_rows){
       fetch('http://0.0.0.0:8000/api/schema/create/csv/', {
         headers: {
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${this.$store.state.accessToken}`
         },
         method: 'POST',
         body: JSON.stringify({

@@ -71,7 +71,8 @@ export default {
         method: 'PUT',
         body: JSON.stringify(this.schema),
         headers: {
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${this.$store.state.accessToken}`
         }
       })
           .then(result => result.text())

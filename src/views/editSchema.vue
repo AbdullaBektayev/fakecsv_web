@@ -2,7 +2,6 @@
 <div>
   <editSchemaItem
     v-bind:schema="schema"
-    @update-schema="updateSchema"
   />
 </div>
 </template>
@@ -19,6 +18,9 @@ export default {
   mounted() {
     fetch('http://0.0.0.0:8000/api/schema/' + this.$route.params.id, {
       method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${this.$store.state.accessToken}`
+      }
     })
         .then(response => response.json())
         .then(json => {
@@ -27,15 +29,6 @@ export default {
   },
   components: {
     editSchemaItem
-  },
-  methods: {
-    updateSchema(schema) {
-      fetch('http://0.0.0.0:8000/api/update_schema/' + this.$route.params.id, {
-        method: 'PUT',
-        data: schema
-      })
-        .then(result => result.text())
-    }
   }
 }
 </script>

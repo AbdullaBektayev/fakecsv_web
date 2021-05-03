@@ -50,6 +50,9 @@ export default {
     removeSchema(id) {
       fetch('http://0.0.0.0:8000/api/schema/' + id + '/delete', {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${this.$store.state.accessToken}`
+        }
       })
         .then(result => result.text())
     },

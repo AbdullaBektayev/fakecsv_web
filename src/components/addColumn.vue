@@ -75,7 +75,8 @@ export default {
       this.column.Schema = this.schema.id
       fetch('http://0.0.0.0:8000/api/create/column/', {
         headers: {
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${this.$store.state.accessToken}`
         },
         method: 'POST',
         body: JSON.stringify(this.column),
