@@ -1,54 +1,51 @@
 <template>
-  <div v-if="!this.isDeleted">
-    <table class="table borderless">
-      <thead>
-      <tr>
-        <th>Column name</th>
-        <th>Type</th>
-        <th>From</th>
-        <th>To</th>
-        <th>Order</th>
-        <th>Delete</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-          <td><input v-model="column.Name"/></td>
+  <div v-if="!this.isDeleted" class="container">
+    <div class="form-row container">
+      <div class="form-group col">
+        <label for="ex1" >Column name</label>
+        <input v-model="column.Name" id="ex1" type="text" class="form-control"/>
+      </div>
 
-          <td>
-            <select v-model="column.Type">
-              <option
-                  v-for="typeChoice in typeChoices"
-                  v-bind:key="typeChoice"
-              >
-                {{ typeChoice }}
-              </option>
-            </select>
-          </td>
+      <div class="form-group col">
+        <label for="ex2" >Type</label>
+        <select id="ex2" v-model="column.Type" class="form-control">
+          <option
+              v-for="typeChoice in typeChoices"
+              v-bind:key="typeChoice"
+          >
+            {{ typeChoice }}
+          </option>
+        </select>
+      </div>
 
-          <td>
-            <input v-model="column.From"/>
-          </td>
+      <div class="form-group col">
+        <label for="ex3" v-if="rangeChoices.includes(column.Type)">From</label>
+        <input v-model="column.From" id="ex3" type="text" class="form-control"
+               v-if="rangeChoices.includes(column.Type)"
+        />
+      </div>
 
-          <td>
-            <input v-model="column.To"/>
-          </td>
+      <div class="form-group col">
+        <label for="ex4" v-if="rangeChoices.includes(column.Type)">To</label>
+        <input v-model="column.To" id="ex4" type="text" class="form-control"
+               v-if="rangeChoices.includes(column.Type)"
+        />
+      </div>
 
-          <td>
-            <input v-model="column.Order"/>
-          </td>
+      <div class="form-group col">
+        <label for="ex5" >Order</label>
+        <input v-model="column.Order" id="ex5" type="text" class="form-control"/>
+      </div>
 
-          <td>
-            <div>
-              <button class="rm"
-                      v-on:click="removeColumn(column.id)"
-              >Remove column</button>
-            </div>
-          </td>
-
-        </tr>
-      </tbody>
-    </table>
+      <div class="form-group col">
+        <label for="ex6" >Delete</label>
+        <button
+                v-on:click="removeColumn(column.id)"
+                id="ex6"
+                class="form-control btn btn-outline-danger"
+        >Remove column</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -63,7 +60,8 @@ export default {
   },
   data() {
     return {
-      typeChoices: ['Job','Email', 'Number'],
+      rangeChoices: ['Integer', 'Text'],
+      typeChoices: ['Job','Email', 'Integer', 'Text', 'FullName'],
       isDeleted: false,
     }
   },
