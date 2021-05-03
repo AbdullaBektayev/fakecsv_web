@@ -1,6 +1,7 @@
 <template>
-  <div class="container">
-    <div class="container">
+  <div class="container ml-0" style="width:70%">
+    <div class="container  my-4">
+      <div class="float-left"><h3>Data sets</h3></div>
       <AddSchemaDownloadItem
           v-on:generate-schema="Generate"
       />
