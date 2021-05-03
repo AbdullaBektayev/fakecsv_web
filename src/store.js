@@ -18,8 +18,8 @@ export default new Vuex.Store({
         destroyToken (state) {
             state.accessToken = null
             state.refreshToken = null
-            localStorage.setItem('accessToken', '')
-            localStorage.setItem('refreshToken', '')
+            localStorage.setItem('accessToken', null)
+            localStorage.setItem('refreshToken', null)
         }
     },
     getters: {

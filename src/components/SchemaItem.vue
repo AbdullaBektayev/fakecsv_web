@@ -6,7 +6,7 @@
         {{ schema.Name }}
       </router-link>
     </td>
-    <td>Some day</td>
+    <td>{{ schema.DateModified.slice(0,10)}}</td>
     <div class="d-flex justify-content-between">
       <button class="rm">
         <router-link :to="{name: 'edit_schema', params: {id: schema.id}}">Edit schema</router-link>

@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td>{{ schemaDownload.id }}</td>
-    <td>{{ schemaDownload.DateModified }}</td>
+    <td>{{ schemaDownload.DateModified.slice(0,10) }}</td>
     <td>Some day</td>
     <div class="d-flex justify-content-between">
       <button class="rm"
