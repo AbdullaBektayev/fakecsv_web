@@ -17,9 +17,9 @@
           </div>
           <div class="form-group col-md-12">
             <label for="Schema_separator" class="float-left">Separator</label>
-            <select v-model="schema.ColumnSeparator" class="form-control" id="Schema_separator">
+            <select v-model="schema.Delimiter" class="form-control" id="Schema_separator">
               <option
-                  v-for="separator in separatorChoices"
+                  v-for="separator in DelimiterChoices"
                   v-bind:key="separator"
               >
                 {{ separator }}
@@ -29,9 +29,9 @@
 
           <div class="form-group col-md-12">
             <label for="Schema_Char" class="float-left">stringChar</label>
-            <select v-model="schema.StringChar" class="form-control" id="Schema_Char">
+            <select v-model="schema.QuoteChar" class="form-control" id="Schema_Char">
               <option
-                  v-for="stringChar in stringCharChoices"
+                  v-for="stringChar in QuoteCharChoices"
                   v-bind:key="stringChar"
               >
                 {{ stringChar }}
@@ -77,8 +77,8 @@ export default {
   },
   data() {
     return {
-      separatorChoices: ['Comma', 'Space'],
-      stringCharChoices: ['Apostrophe', 'Quotation Marks']
+      DelimiterChoices: ['Comma (,)', 'Semicolon (;)'],
+      QuoteCharChoices: ["Single-quote (')", 'Double-quote (")']
     }
   },
   methods: {

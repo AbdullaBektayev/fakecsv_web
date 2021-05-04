@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <div class="row">
-    <div class="col offset-1 col-lg-8 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
+    <div class="row align-items-center">
+    <div class="col-xl-12 d-flex justify-content-center align-items-center">
       <form v-on:submit.prevent="login" class="my-4">
-        <div class="form-group col-md-12 my-5">
+        <div class="form-group my-5">
           <h3>Login</h3>
         </div>
         <div class="form-group" v-if="incorrectAuth">
           <h4 >Please enter your correct details.</h4>
         </div>
-        <div class="form-group col-md-12">
+        <div class="form-group">
           <input
               type="text"
               class="form-control"
@@ -17,7 +17,7 @@
               v-model="username"
           >
         </div>
-        <div class="form-group col-md-12">
+        <div class="form-group">
           <input
               type="password"
               class="form-control"
