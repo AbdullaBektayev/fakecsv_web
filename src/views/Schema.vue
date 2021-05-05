@@ -35,8 +35,8 @@ export default {
       schemas: [],
     }
   },
-  mounted() {
-    fetch('http://0.0.0.0:8000/api/schema/', {
+  async mounted() {
+    await fetch('http://0.0.0.0:8000/api/schema/', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -50,8 +50,8 @@ export default {
       .catch(err => console.log(err))
   },
   methods: {
-    removeSchema(id) {
-      fetch('http://0.0.0.0:8000/api/schema/' + id + '/delete', {
+    async removeSchema(id) {
+      await fetch('http://0.0.0.0:8000/api/schema/' + id + '/delete', {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${this.$store.state.accessToken}`
@@ -59,8 +59,8 @@ export default {
       })
         .then(result => result.text())
     },
-    createNewSchema() {
-      fetch('http://0.0.0.0:8000/api/create_schema/', {
+    async createNewSchema() {
+      await fetch('http://0.0.0.0:8000/api/create_schema/', {
         headers: {
           'Authorization': `Bearer ${this.$store.state.accessToken}`
         },

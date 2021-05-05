@@ -45,9 +45,9 @@ export default {
     }
   },
   methods: {
-    login()
+    async login()
     {
-      this.$store.dispatch('userLogin', {
+      await this.$store.dispatch('userLogin', {
         username: this.username,
         password: this.password,
       })

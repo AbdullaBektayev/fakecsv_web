@@ -15,8 +15,8 @@ export default {
       schema: {},
     }
   },
-  mounted() {
-    fetch('http://0.0.0.0:8000/api/schema/' + this.$route.params.id, {
+  async mounted() {
+    await fetch('http://0.0.0.0:8000/api/schema/' + this.$route.params.id, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${this.$store.state.accessToken}`

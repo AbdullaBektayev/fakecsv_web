@@ -80,9 +80,9 @@ export default {
     }
   },
   methods: {
-    addColumn() {
+    async addColumn() {
       this.column.Schema = this.schema.id
-      fetch('http://0.0.0.0:8000/api/create/column/', {
+      await fetch('http://0.0.0.0:8000/api/create/column/', {
         headers: {
           'content-type': 'application/json',
           'Authorization': `Bearer ${this.$store.state.accessToken}`

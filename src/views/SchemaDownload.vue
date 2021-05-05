@@ -39,8 +39,8 @@ export default {
     AddSchemaDownloadItem,
     SchemaDownloadList
   },
-  mounted() {
-    fetch('http://0.0.0.0:8000/api/schema/download/list/' + this.$route.params.id, {
+  async mounted() {
+    await fetch('http://0.0.0.0:8000/api/schema/download/list/' + this.$route.params.id, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${this.$store.state.accessToken}`
@@ -53,8 +53,8 @@ export default {
       .catch(err => console.log(err))
   },
   methods: {
-    Generate(number_of_rows){
-      fetch('http://0.0.0.0:8000/api/schema/create/csv/', {
+    async Generate(number_of_rows){
+      await fetch('http://0.0.0.0:8000/api/schema/create/csv/', {
         headers: {
           'content-type': 'application/json',
           'Authorization': `Bearer ${this.$store.state.accessToken}`
@@ -67,7 +67,8 @@ export default {
       })
           .then(result => result.json())
           .then(
-              json => this.DownloadSchemas.push(json),
+              json => console.log(json)
+              // json => this.DownloadSchemas.push(json),
           )
     }
   }
