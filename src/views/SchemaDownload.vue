@@ -40,7 +40,7 @@ export default {
     SchemaDownloadList
   },
   async mounted() {
-    await fetch('http://0.0.0.0:8000/api/schema/download/list/' + this.$route.params.id, {
+    await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/schema/download/list/' + this.$route.params.id, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${this.$store.state.accessToken}`
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     async Generate(number_of_rows){
-      await fetch('http://0.0.0.0:8000/api/schema/create/csv/', {
+      await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/schema/create/csv/', {
         headers: {
           'content-type': 'application/json',
           'Authorization': `Bearer ${this.$store.state.accessToken}`

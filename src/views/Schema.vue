@@ -36,7 +36,7 @@ export default {
     }
   },
   async mounted() {
-    await fetch('http://0.0.0.0:8000/api/schema/', {
+    await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/schema/', {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     async removeSchema(id) {
-      await fetch('http://0.0.0.0:8000/api/schema/' + id + '/delete', {
+      await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/schema/' + id + '/delete', {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${this.$store.state.accessToken}`
@@ -60,7 +60,7 @@ export default {
         .then(result => result.text())
     },
     async createNewSchema() {
-      await fetch('http://0.0.0.0:8000/api/create_schema/', {
+      await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/create_schema/', {
         headers: {
           'Authorization': `Bearer ${this.$store.state.accessToken}`
         },

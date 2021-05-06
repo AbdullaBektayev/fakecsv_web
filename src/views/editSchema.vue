@@ -16,7 +16,7 @@ export default {
     }
   },
   async mounted() {
-    await fetch('http://0.0.0.0:8000/api/schema/' + this.$route.params.id, {
+    await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/schema/' + this.$route.params.id, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${this.$store.state.accessToken}`

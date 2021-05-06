@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     async onSubmit(id) {
-      await fetch('http://0.0.0.0:8000/api/schema/' + id + '/update', {
+      await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/schema/' + id + '/update', {
         method: 'PUT',
         body: JSON.stringify(this.schema),
         headers: {
@@ -95,7 +95,7 @@ export default {
       this.$router.push({name: 'schema_list'})
     },
     async removeColumn(id) {
-      await fetch('http://0.0.0.0:8000/api/column/' + id + '/delete', {
+      await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/column/' + id + '/delete', {
         method: 'DELETE',
       })
           .then(result => result.text())

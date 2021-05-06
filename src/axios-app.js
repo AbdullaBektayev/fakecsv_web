@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getAPI = axios.create({
-    baseURL: 'http://0.0.0.0:8000',
+    baseURL: 'https://enigmatic-dawn-95775.herokuapp.com',
     timeout: 100000
 })
 

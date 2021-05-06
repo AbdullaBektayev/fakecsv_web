@@ -82,7 +82,7 @@ export default {
   methods: {
     async addColumn() {
       this.column.Schema = this.schema.id
-      await fetch('http://0.0.0.0:8000/api/create/column/', {
+      await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/create/column/', {
         headers: {
           'content-type': 'application/json',
           'Authorization': `Bearer ${this.$store.state.accessToken}`

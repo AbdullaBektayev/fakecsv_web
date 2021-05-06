@@ -7,7 +7,7 @@
       <div class="d-flex justify-content-between">
         <button class="btn btn-outline-primary "
         >
-          <a :href="'http://0.0.0.0:8000/api/schema/download/' + schemaDownload.id">Download</a>
+          <a :href="'https://enigmatic-dawn-95775.herokuapp.com/api/schema/download/' + schemaDownload.id">Download</a>
         </button>
       </div>
     </td>
