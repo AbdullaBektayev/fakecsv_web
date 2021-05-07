@@ -51,7 +51,7 @@
 
 <script>
 export default {
-  name: "columnItem",
+  name: "ColumnItem",
   props: {
     column: {
       type: Object,

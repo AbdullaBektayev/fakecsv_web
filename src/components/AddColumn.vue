@@ -57,7 +57,7 @@
 
 <script>
 export default {
-  name: "addColumn",
+  name: "AddColumn",
   props: {
     schema: {
       type: Object,
@@ -80,7 +80,7 @@ export default {
     }
   },
   methods: {
-    async addColumn() {
+    async AddColumn() {
       this.column.Schema = this.schema.id
       await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/create/column/', {
         headers: {

@@ -11,7 +11,7 @@
 import editSchemaItem from "@/components/EditSchemaItem";
 import Loader from "@/components/Loader";
 export default {
-  name: "editSchema",
+  name: "EditSchema",
   data() {
     return {
       schema: {},

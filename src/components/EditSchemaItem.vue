@@ -50,25 +50,25 @@
       <h3 class="float-left">Schema columns</h3>
     </div>
 
-    <columnList
+    <ColumnList
         v-bind:columns="schema.column"
         @remove-column="removeColumn"
     />
 
-    <addColumn
+    <AddColumn
         v-bind:schema="schema"
     />
   </div>
 </template>
 
 <script>
-import columnList from "@/components/ColumnList";
-import addColumn from "@/components/AddColumn";
+import ColumnList from "@/components/ColumnList";
+import AddColumn from "@/components/AddColumn";
 export default {
   name: "editSchemaItem",
   components: {
-    columnList,
-    addColumn
+    ColumnList,
+    AddColumn
   },
   props: {
     schema: {

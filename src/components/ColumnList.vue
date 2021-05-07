@@ -1,6 +1,6 @@
 <template>
   <div>
-    <columnItem
+    <ColumnItem
       v-for="column in columns" :key="column.id"
       v-bind:column="column"
       v-on:remove-column="removeColumn"
@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import columnItem from "@/components/ColumnItem";
+import ColumnItem from "@/components/ColumnItem";
 export default {
-  name: "columnList",
+  name: "ColumnList",
   props: ['columns'],
   components: {
-    columnItem
+    ColumnItem
   },
   methods: {
     removeColumn(id) {
