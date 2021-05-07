@@ -9,8 +9,8 @@
     <td>{{ schema.DateModified.slice(0,10)}}</td>
     <td>
       <div class="container">
-        <button class="btn btn-outline-primary float-left p-md-1">
-          <router-link :to="{name: 'edit_schema', params: {id: schema.id}}">Edit schema</router-link>
+        <button class="btn btn-outline-primary float-left p-md-1" v-on:click="editLink(schema.id)">
+          Edit schema
         </button>
         <button class="btn btn-outline-danger float-right p-md-1"
                 v-on:click="removeSchema(schema.id)"
@@ -38,6 +38,9 @@ export default {
     removeSchema(id) {
       this.$emit('remove-schema', id)
       this.isDeleted = true
+    },
+    editLink(id) {
+      this.$router.push({name: 'edit_schema', params: {'id': id}})
     }
   }
 }
