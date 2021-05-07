@@ -47,7 +47,7 @@
       </div>
     </div>
     <button
-        v-on:click="addColumn()"
+        v-on:click="AddColumn()"
         class="btn btn-primary float-left mb-3"
     >
       Add column

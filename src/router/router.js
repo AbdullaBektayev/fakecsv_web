@@ -15,7 +15,7 @@ const routes = [
   {
     name: 'edit_schema',
     path: '/schema/:id/edit',
-    component: () => import('../views/editSchema'),
+    component: () => import('../views/EditSchema'),
     params: true,
     meta: {
       requiresLogin: true

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import editSchemaItem from "@/components/editSchemaItem";
+import editSchemaItem from "@/components/EditSchemaItem";
 import Loader from "@/components/Loader";
 export default {
   name: "editSchema",

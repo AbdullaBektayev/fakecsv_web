@@ -62,8 +62,8 @@
 </template>
 
 <script>
-import columnList from "@/components/columnList";
-import addColumn from "@/components/addColumn";
+import columnList from "@/components/ColumnList";
+import addColumn from "@/components/AddColumn";
 export default {
   name: "editSchemaItem",
   components: {

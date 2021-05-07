@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import columnItem from "@/components/columnItem";
+import columnItem from "@/components/ColumnItem";
 export default {
   name: "columnList",
   props: ['columns'],
