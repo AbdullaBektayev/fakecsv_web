@@ -34,7 +34,7 @@ export default {
       })
           .then(response => response.json())
           .then(json => {
-            window.open(json['response'], '_blank')
+            window.open(json['link'], '_blank')
           })
           .catch(err => console.log(err))
     }
