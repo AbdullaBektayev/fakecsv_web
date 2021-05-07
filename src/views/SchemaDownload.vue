@@ -21,6 +21,7 @@
             v-bind:DownloadSchemas="DownloadSchemas"
         />
       </table>
+      <Loader v-if="loading"/>
     </div>
   </div>
 </template>
@@ -28,6 +29,7 @@
 <script>
 import SchemaDownloadList from "@/components/SchemaDownloadList";
 import AddSchemaDownloadItem from "@/components/AddSchemaDownloadItem";
+import Loader from "@/components/Loader";
 export default {
   name: "SchemaDownload",
   data() {
@@ -39,9 +41,11 @@ export default {
         Schema: 1
       },
       DownloadSchemas: [],
+      loading: true
     }
   },
   components:{
+    Loader,
     AddSchemaDownloadItem,
     SchemaDownloadList
   },
@@ -55,6 +59,7 @@ export default {
       .then(response => response.json())
       .then(json => {
         this.DownloadSchemas = json
+        this.loading = false
       })
       .catch(err => console.log(err))
   },

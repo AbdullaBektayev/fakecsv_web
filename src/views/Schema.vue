@@ -21,18 +21,21 @@
           @remove-schema="removeSchema"
         />
       </table>
+      <Loader v-if="loading"/>
     </div>
   </div>
 </template>
 
 <script>
 import SchemaList from "@/components/SchemaList";
+import Loader from "@/components/Loader";
 
 export default {
   name: "Schema",
   data() {
     return {
       schemas: [],
+      loading: true
     }
   },
   async mounted() {
@@ -46,6 +49,7 @@ export default {
       .then(response => response.json())
       .then(json => {
         this.schemas = json
+        this.loading = false
       })
       .catch(err => console.log(err))
   },
@@ -73,6 +77,7 @@ export default {
     }
   },
   components: {
+    Loader,
     SchemaList
   }
 }

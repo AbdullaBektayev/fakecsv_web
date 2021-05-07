@@ -1,5 +1,6 @@
 <template>
 <div>
+  <Loader v-if="loading"/>
   <editSchemaItem
     v-bind:schema="schema"
   />
@@ -8,11 +9,13 @@
 
 <script>
 import editSchemaItem from "@/components/editSchemaItem";
+import Loader from "@/components/Loader";
 export default {
   name: "editSchema",
   data() {
     return {
       schema: {},
+      loading: true
     }
   },
   async mounted() {
@@ -25,9 +28,11 @@ export default {
         .then(response => response.json())
         .then(json => {
           this.schema = json
+          this.loading = false
         })
   },
   components: {
+    Loader,
     editSchemaItem
   }
 }
