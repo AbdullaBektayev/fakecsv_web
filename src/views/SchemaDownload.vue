@@ -32,6 +32,12 @@ export default {
   name: "SchemaDownload",
   data() {
     return {
+      inProcessJson: {
+        id: '',
+        DateModified: new Date().toJSON(),
+        File_name: "",
+        Schema: 1
+      },
       DownloadSchemas: [],
     }
   },
@@ -54,6 +60,7 @@ export default {
   },
   methods: {
     async Generate(number_of_rows){
+      this.DownloadSchemas.push(this.inProcessJson)
       await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/schema/create/csv/', {
         headers: {
           'content-type': 'application/json',
@@ -67,8 +74,10 @@ export default {
       })
           .then(result => result.json())
           .then(
-              json => console.log(json)
-              // json => this.DownloadSchemas.push(json),
+              json => {
+                this.DownloadSchemas.pop()
+                this.DownloadSchemas.push(json)
+              }
           )
     }
   }
