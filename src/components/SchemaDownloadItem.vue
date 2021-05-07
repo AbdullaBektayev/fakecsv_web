@@ -5,9 +5,10 @@
     <td><div class="btn btn-success btn-sm float-left disabled" >Ready</div></td>
     <td>
       <div class="d-flex justify-content-between">
-        <button class="btn btn-outline-primary "
+        <button  v-on:click="DownloadSchemaFromLink(schemaDownload.id)"
+                 class="btn btn-outline-primary"
         >
-          <a :href="'https://enigmatic-dawn-95775.herokuapp.com/api/schema/download/' + schemaDownload.id">Download</a>
+          Download
         </button>
       </div>
     </td>
@@ -18,6 +19,22 @@
 export default {
   name: "SchemaDownloadItem",
   props: ['schemaDownload'],
+  methods: {
+    async DownloadSchemaFromLink(id) {
+      await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/schema/download/' + id, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${this.$store.state.accessToken}`
+        }
+      })
+          .then(response => response.json())
+          .then(json => {
+            window.open(json['response'], '_blank')
+          })
+          .catch(err => console.log(err))
+    }
+  }
 }
 </script>
 
