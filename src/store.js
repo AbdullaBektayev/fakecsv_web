@@ -8,24 +8,20 @@ export default new Vuex.Store({
         accessToken: localStorage.getItem('accessToken'),
         refreshToken: localStorage.getItem('refreshToken'),
         username: localStorage.getItem('username'),
-        hours: localStorage.getItem('hours')
     },
     mutations: {
         updateStorage (state, { access, refresh, username }) {
             state.accessToken = access
             state.refreshToken = refresh
             state.username = username
-            state.hours = new Date().getHours().toString()
             localStorage.setItem('accessToken', access)
             localStorage.setItem('refreshToken', refresh)
             localStorage.setItem('username', username)
-            localStorage.setItem('hours', state.hours)
         },
         destroyToken (state) {
             state.accessToken = null
             state.refreshToken = null
             state.username = null
-            state.hours = '10000'
             localStorage.setItem('accessToken', null)
             localStorage.setItem('refreshToken', null)
             localStorage.setItem('username', null)
