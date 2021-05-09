@@ -91,14 +91,27 @@ export default {
           'Authorization': `Bearer ${this.$store.state.accessToken}`
         }
       })
-          .then(result => result.text())
-      this.$router.push({name: 'schema_list'})
+        .then(response => {
+          console.log(response.status === 401, response.status)
+          if(response.status === 401){
+            this.$router.push({ name: 'logout' })
+          }
+          return response.text()
+        })
+
+      await this.$router.push({name: 'schema_list'})
     },
     async removeColumn(id) {
       await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/column/' + id + '/delete', {
         method: 'DELETE',
       })
-          .then(result => result.text())
+        .then(response => {
+          console.log(response.status === 401, response.status)
+          if(response.status === 401){
+            this.$router.push({ name: 'logout' })
+          }
+          return response.text()
+        })
     }
   }
 }

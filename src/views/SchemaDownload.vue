@@ -59,7 +59,7 @@ export default {
       .then(response => {
         console.log(response.status === 401, response.status)
         if(response.status === 401){
-          this.$router.push({ name: 'login' })
+          this.$router.push({ name: 'logout' })
         }
         return response.json()
       })
@@ -83,13 +83,19 @@ export default {
           'row_num': number_of_rows
         }),
       })
-          .then(result => result.json())
-          .then(
-              json => {
-                this.DownloadSchemas.pop()
-                this.DownloadSchemas.push(json)
-              }
-          )
+        .then(response => {
+          console.log(response.status === 401, response.status)
+          if(response.status === 401){
+            this.$router.push({ name: 'logout' })
+          }
+          return response.json()
+        })
+        .then(
+            json => {
+              this.DownloadSchemas.pop()
+              this.DownloadSchemas.push(json)
+            }
+        )
     }
   }
 }

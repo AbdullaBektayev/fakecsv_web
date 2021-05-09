@@ -49,7 +49,7 @@ export default {
       .then(response => {
         console.log(response.status === 401, response.status)
         if(response.status === 401){
-          this.$router.push({ name: 'login' })
+          this.$router.push({ name: 'logout' })
         }
         return response.json()
       })
@@ -67,7 +67,13 @@ export default {
           'Authorization': `Bearer ${this.$store.state.accessToken}`
         }
       })
-        .then(result => result.text())
+        .then(response => {
+          console.log(response.status === 401, response.status)
+          if(response.status === 401){
+            this.$router.push({ name: 'logout' })
+          }
+          return response.text()
+        })
     },
     async createNewSchema() {
       await fetch('https://enigmatic-dawn-95775.herokuapp.com/api/create_schema/', {
@@ -76,10 +82,16 @@ export default {
         },
         method: 'POST',
       })
-      .then(response => response.json())
-      .then(json => {
-        this.$router.push({name: 'edit_schema', params: {'id': json.id}})
-      })
+        .then(response => {
+          console.log(response.status === 401, response.status)
+          if(response.status === 401){
+            this.$router.push({ name: 'logout' })
+          }
+          return response.json()
+        })
+        .then(json => {
+          this.$router.push({name: 'edit_schema', params: {'id': json.id}})
+        })
     }
   },
   components: {
