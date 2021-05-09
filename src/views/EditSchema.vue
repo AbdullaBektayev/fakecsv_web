@@ -26,7 +26,6 @@ export default {
       }
     })
         .then(response => {
-          console.log(response.status === 401, response.status)
           if(response.status === 401){
             this.$router.push({ name: 'logout' })
           }
