@@ -46,7 +46,15 @@ export default {
         'Authorization': `Bearer ${this.$store.state.accessToken}`
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        console.log(response.status === 401, response.status)
+        if(response.status === 401){
+          this.$router.push({ name: 'login' })
+        }
+        else {
+          return response.json()
+        }
+      })
       .then(json => {
         this.schemas = json
         this.loading = false
