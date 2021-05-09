@@ -8,7 +8,8 @@ Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresLogin)) {
-    if (!store.getters.loggedIn) {
+    let cur_time = new Date().getHours();
+    if (!store.getters.loggedIn || 2 < Math.abs(cur_time - store.state.hours)) {
       next({ name: 'login' })
     } else {
       next()
