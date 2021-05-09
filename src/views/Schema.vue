@@ -51,9 +51,7 @@ export default {
         if(response.status === 401){
           this.$router.push({ name: 'login' })
         }
-        else {
-          return response.json()
-        }
+        return response.json()
       })
       .then(json => {
         this.schemas = json
